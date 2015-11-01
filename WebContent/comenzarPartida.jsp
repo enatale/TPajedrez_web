@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +31,17 @@
         <input type="text" name="txtJugador2" id="txtJugador2" class="form-control" placeholder="DNI Jugador 2" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Jugar</button>
       </form>
+      
+      <% 
+      			String mensaje=(String)request.getAttribute("mensaje");
+        		if(/*mensaje.trim().isEmpty()*/mensaje!=null){
+      %>
+      			<div class="alert alert-danger" role="alert">
+        			<strong>Error!</strong> <%=mensaje %>
+      			</div>
+      <%
+        		}
+      %>
 
     </div> <!-- /container -->
 </body>
