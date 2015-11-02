@@ -1,2 +1,14 @@
-# TPajedrez_web
-TP Ajedrez con interfaz web
+#
+
+JAVA 
+
+Repositorio corresponde al Trabajo Practico de Java UTN FRRo.
+Juego Ajedrez interfaz web
+
+Integrantes---Legajo
+* Aguirre,Federico---40224
+* Marimón, Valentín---40093
+* Natale, Esteban---40331
+* Platero, Magalí---40325
+
+Comisión: 2
