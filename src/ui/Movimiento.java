@@ -8,20 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import appExceptions.ApplicationException;
+import appExceptions.EndGameException;
 import entidades.Partida;
+import entidades.Posicion;
 import negocio.CtrlAjedrez;
 
 /**
- * Servlet implementation class IniciarPartida
+ * Servlet implementation class Movimiento
  */
-@WebServlet(description = "Inicia una partida nueva o continua la anterior", urlPatterns = { "/IniciarPartida" })
-public class IniciarPartida extends HttpServlet {
+@WebServlet(description = "Realiza el movimiento de una pieza", urlPatterns = { "/movimiento" })
+public class Movimiento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IniciarPartida() {
+    public Movimiento() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,21 +39,21 @@ public class IniciarPartida extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CtrlAjedrez controlador = new CtrlAjedrez();
-		String opcion = request.getParameter("opcion");
 		try {
-			if(opcion.equals("nueva")){
-				Partida partidaAntigua = (Partida)request.getSession().getAttribute("partida");
-				controlador.eliminarPartida(partidaAntigua.getIdPartida());
-				Partida partidaNueva = new Partida(partidaAntigua.getJugadorBlancas(), partidaAntigua.getJugadorNegras());
-				controlador.nuevaPartida(partidaNueva);
-				request.getSession().setAttribute("partida", partidaNueva);
-			}
-			response.sendRedirect("partida.jsp");
+			Partida partida = (Partida)request.getSession().getAttribute("partida");
+			CtrlAjedrez controlador = new CtrlAjedrez(partida);
+			char colOrigen = request.getParameter("txtColOrigen").toCharArray()[0];
+			int filaOrigen = Integer.parseInt(request.getParameter("txtFilaOrigen"));
+			Posicion posOrigen = new Posicion(colOrigen, filaOrigen);
+			char colDestino = request.getParameter("txtColDestino").toCharArray()[0];
+			int filaDestino = Integer.parseInt(request.getParameter("txtFilaDestino"));
+			Posicion posDestino = new Posicion(colDestino, filaDestino);
+			controlador.moverPieza(posOrigen, posDestino);
+		} catch (EndGameException e) {
+			// TODO: handle exception
 		} catch (ApplicationException e) {
 			// TODO: handle exception
 		}
 	}
 
 }
-
