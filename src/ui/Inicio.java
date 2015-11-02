@@ -52,8 +52,7 @@ public class Inicio extends HttpServlet {
 				request.getSession().setAttribute("partida", partida);
 				request.getRequestDispatcher("partida.jsp").forward(request, response);
 			} else {
-				//TODO Redirigir a pagina que pregunte si continuar partida o no (borrar linea de abajo)
-				response.getWriter().write("Esta creada la partida nro: "+partida.getIdPartida());
+				response.sendRedirect("continuar.html");
 			}
 			
 		} catch (NullPointerException e) {
