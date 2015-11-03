@@ -16,7 +16,17 @@
 <body>
 <%Partida partida= (Partida) session.getAttribute("partida"); %>
 <div class="container">
-	 <div class="row  bg-primary img-rounded"> 
+	  <% 
+      			String mensaje=(String)request.getAttribute("mensaje");
+        		if(mensaje!=null){
+      %>
+      			<div class="alert alert-success" role="alert">
+        			<h1><strong>Juego finalizado!</strong> <%=mensaje %></h1>
+      			</div>
+      <%
+        		}
+      %>
+	 <div class="row  bg-success img-rounded"> 
      	<div class="col-md-6">
         	<h6>
             <label for="txtJugadorBlancas">Blancas: </label>
@@ -32,28 +42,10 @@
             </h6>
 		</div>
      </div>
-     <div class="row bg-primary img-rounded" style="margin-top:15px; margin-bottom: 10 px">
-     	<div class="col-md-12">
-        	<h6>
-            <label for="txtTurno">Turno jugador: </label>
-            <input id="txtTurno" name="txtTurno" type="text" class="form-control" disabled
-            	value="<%=partida.getTurno()%>">
-            </h6>
-        </div>
-     </div>
-     <% 
-      			String mensaje=(String)request.getAttribute("mensaje");
-        		if(mensaje!=null){
-      %>
-      			<div class="alert alert-danger" role="alert">
-        			<strong>Error!</strong> <%=mensaje %>
-      			</div>
-      <%
-        		}
-      %>
+
      <div class="row" >
-     	<div class="col-md-3">
-     		<table class="table table-condensed table-striped">
+     	<div class="col-md-3 col-md-offset-3">
+     		<table class="table table-striped">
             	<thead><label> Posiciones blancas: </label> </thead>
                 <tbody>
      	<%
@@ -75,7 +67,7 @@
      		</table>
         </div>
         <div class="col-md-3">
-     		<table class="table table-condensed table-striped">
+     		<table class="table table-striped">
             	<thead><label> Posiciones negras: </label> </thead>
                 <tbody>
      	<%
@@ -96,30 +88,7 @@
      			</tbody>
      		</table>
         </div>
-        
-        
-        <div class="col-md-6">
-	        	<form action="movimiento" method="post">
-	                <div class="row">
-	                        <div class="col-xs-6">
-	                            <h3><span class="label label-default">Columna:</span></h3>
-	                            <input type="text" name="txtColOrigen" id="txtColOrigen" placeholder="Columna origen" class="form-control" required tabindex="1"><br/>
-	                            <input type="text" name="txtColDestino" id="txtColDestino" placeholder="Columna destino" class="form-control" required tabindex="3">
-	                        </div>
-	                        <div class="col-xs-6">
-	                            <h3><span class="label label-default">Fila:</span></h3>
-	                            <input type="text" name="txtFilaOrigen" id="txtFilaOrigen" placeholder="Fila origen" class="form-control" required tabindex="2"><br/>
-	                            <input type="text" name="txtFilaDestino" id="txtFilaDestino" placeholder="Fila destino" class="form-control" required tabindex="4">
-	                        </div>
-	                </div>
-	                <br />
-	                <div class="row">
-	                	<div class="col-xs-4 col-xs-offset-4" style="text-align:center">
-	                    	<input type="submit" value="Mover" class="btn btn-lg btn-success">
-	                    </div>
-	                </div>
-	            </form>
-        </div>
+
      </div>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

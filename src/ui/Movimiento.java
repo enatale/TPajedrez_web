@@ -51,11 +51,11 @@ public class Movimiento extends HttpServlet {
 			controlador.moverPieza(posOrigen, posDestino);
 			response.sendRedirect("partida.jsp");
 		} catch (EndGameException e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			request.setAttribute("mensaje", e.getMessage());
+			request.getRequestDispatcher("final.jsp").forward(request, response);
 		} catch (ApplicationException e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			request.setAttribute("mensaje", e.getMessage());
+			request.getRequestDispatcher("partida.jsp").forward(request, response);
 		}
 	}
 }

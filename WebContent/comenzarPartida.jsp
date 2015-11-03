@@ -34,7 +34,7 @@
       
       <% 
       			String mensaje=(String)request.getAttribute("mensaje");
-        		if(/*mensaje.trim().isEmpty()*/mensaje!=null){
+        		if(mensaje!=null){
       %>
       			<div class="alert alert-danger" role="alert">
         			<strong>Error!</strong> <%=mensaje %>
