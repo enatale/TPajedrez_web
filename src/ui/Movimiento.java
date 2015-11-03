@@ -49,11 +49,13 @@ public class Movimiento extends HttpServlet {
 			int filaDestino = Integer.parseInt(request.getParameter("txtFilaDestino"));
 			Posicion posDestino = new Posicion(colDestino, filaDestino);
 			controlador.moverPieza(posOrigen, posDestino);
+			response.sendRedirect("partida.jsp");
 		} catch (EndGameException e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		} catch (ApplicationException e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
-
 }

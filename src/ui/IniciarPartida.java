@@ -54,4 +54,3 @@ public class IniciarPartida extends HttpServlet {
 	}
 
 }
-
